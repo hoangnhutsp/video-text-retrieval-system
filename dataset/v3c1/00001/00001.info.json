@@ -1,0 +1,126 @@
+{
+    "extractor": "vimeo",
+    "protocol": "https",
+    "upload_date": "20140531",
+    "height": 720,
+    "like_count": null,
+    "duration": 273,
+    "fulltitle": "PARISIANA JAM",
+    "id": "96990666",
+    "view_count": null,
+    "playlist": null,
+    "title": "PARISIANA JAM",
+    "_filename": "96990666.mp4",
+    "playlist_index": null,
+    "width": 1280,
+    "comment_count": null,
+    "uploader_url": "https://vimeo.com/valentinxflad",
+    "fps": 25,
+    "thumbnail": "https://i.vimeocdn.com/video/477293398_1280.jpg",
+    "webpage_url_basename": "96990666",
+    "display_id": "96990666",
+    "description": "On Sunday, May 25th, many riders from Paris and from Argentina came to the infamous \"Opera Spot\" in the middle of Paris to ride together.\nIt was a great time: we rode as hard as we could, we spoke together, we chilled a lot...\nValentin FLAD - May 2014",
+    "format": "http-720p - 1280x720",
+    "timestamp": 1401532358,
+    "tbr": null,
+    "uploader": "Valentin Flad",
+    "format_id": "http-720p",
+    "uploader_id": "valentinxflad",
+    "subtitles": {},
+    "thumbnails": [
+        {
+            "url": "https://i.vimeocdn.com/video/477293398_1280.jpg",
+            "id": "0"
+        }
+    ],
+    "license": "by-nc-sa",
+    "url": "https://11-lvl3-pdl.vimeocdn.com/01/4398/3/96990666/258634828.mp4?expires=1517486523&token=05b4bed45a62fe0cf2bc4",
+    "extractor_key": "Vimeo",
+    "http_headers": {
+        "Accept-Charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.7",
+        "Accept-Language": "en-us,en;q=0.5",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)"
+    },
+    "ext": "mp4",
+    "webpage_url": "https://vimeo.com/96990666",
+    "formats": [
+        {
+            "protocol": "m3u8_native",
+            "format": "hls-level3-710 - 640x360",
+            "tbr": 710.961,
+            "height": 360,
+            "preference": null,
+            "manifest_url": "https://11-lvl3-hls.vimeocdn.com/1517489823-e9b9ada3040a6083a2d165c0b68321de8c793166/01/4398/3/96990666/master.m3u8",
+            "format_id": "hls-level3-710",
+            "http_headers": {
+                "Accept-Charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.7",
+                "Accept-Language": "en-us,en;q=0.5",
+                "Accept-Encoding": "gzip, deflate",
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)"
+            },
+            "url": "https://11-lvl3-hls.vimeocdn.com/1517489823-e9b9ada3040a6083a2d165c0b68321de8c793166/01/4398/3/96990666/258634829.mp4.m3u8",
+            "width": 640,
+            "ext": "mp4",
+            "fps": null
+        },
+        {
+            "http_headers": {
+                "Accept-Charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.7",
+                "Accept-Language": "en-us,en;q=0.5",
+                "Accept-Encoding": "gzip, deflate",
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)"
+            },
+            "protocol": "https",
+            "format": "http-360p - 640x360",
+            "url": "https://11-lvl3-pdl.vimeocdn.com/01/4398/3/96990666/258634829.mp4?expires=1517486523&token=036da2757980d2b9accea",
+            "tbr": null,
+            "height": 360,
+            "width": 640,
+            "ext": "mp4",
+            "fps": 25,
+            "format_id": "http-360p"
+        },
+        {
+            "protocol": "m3u8_native",
+            "format": "hls-level3-2655 - 1280x720",
+            "tbr": 2655.624,
+            "height": 720,
+            "preference": null,
+            "manifest_url": "https://11-lvl3-hls.vimeocdn.com/1517489823-e9b9ada3040a6083a2d165c0b68321de8c793166/01/4398/3/96990666/master.m3u8",
+            "format_id": "hls-level3-2655",
+            "http_headers": {
+                "Accept-Charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.7",
+                "Accept-Language": "en-us,en;q=0.5",
+                "Accept-Encoding": "gzip, deflate",
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)"
+            },
+            "url": "https://11-lvl3-hls.vimeocdn.com/1517489823-e9b9ada3040a6083a2d165c0b68321de8c793166/01/4398/3/96990666/258634828.mp4.m3u8",
+            "width": 1280,
+            "ext": "mp4",
+            "fps": null
+        },
+        {
+            "http_headers": {
+                "Accept-Charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.7",
+                "Accept-Language": "en-us,en;q=0.5",
+                "Accept-Encoding": "gzip, deflate",
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)"
+            },
+            "protocol": "https",
+            "format": "http-720p - 1280x720",
+            "url": "https://11-lvl3-pdl.vimeocdn.com/01/4398/3/96990666/258634828.mp4?expires=1517486523&token=05b4bed45a62fe0cf2bc4",
+            "tbr": null,
+            "height": 720,
+            "width": 1280,
+            "ext": "mp4",
+            "fps": 25,
+            "format_id": "http-720p"
+        }
+    ]
+}

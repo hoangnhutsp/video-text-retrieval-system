@@ -1,0 +1,22 @@
+# Additional requirements for Docker deployment
+
+# Web API framework
+flask>=2.3.0
+flask-cors>=4.0.0
+
+# Vector databases
+weaviate-client>=3.24.0
+qdrant-client>=1.6.0
+chromadb>=0.4.0
+
+# API utilities
+requests>=2.31.0
+pydantic>=2.0.0
+
+# Monitoring and logging
+prometheus-client>=0.17.0
+structlog>=23.0.0
+
+# Optional: GPU support (uncomment if using GPU)
+# torch>=2.0.0+cu118 --index-url https://download.pytorch.org/whl/cu118
+# torchvision>=0.15.0+cu118 --index-url https://download.pytorch.org/whl/cu118
