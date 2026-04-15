@@ -98,6 +98,21 @@ class WeaviateVideoRetrieval:
                     name="description",
                     data_type=wvc.config.DataType.TEXT,
                     description="Text description of the video content"
+                ),
+                wvc.config.Property(
+                    name="source",
+                    data_type=wvc.config.DataType.TEXT,
+                    description="Dataset source (v3c1, v3c2, v3c3)"
+                ),
+                wvc.config.Property(
+                    name="extractText",
+                    data_type=wvc.config.DataType.TEXT,
+                    description="OCR extracted text from image"
+                ),
+                wvc.config.Property(
+                    name="clipDescription",
+                    data_type=wvc.config.DataType.TEXT,
+                    description="CLIP-generated image description"
                 )
             ]
         )
@@ -156,7 +171,10 @@ class WeaviateVideoRetrieval:
                     "imagePath": keyframe.image_path,
                     "startTime": keyframe.start_time,
                     "endTime": keyframe.end_time,
-                    "description": keyframe.description
+                    "description": keyframe.description,
+                    "source": getattr(keyframe, 'source', 'unknown'),
+                    "extractText": getattr(keyframe, 'extract_text', None),
+                    "clipDescription": getattr(keyframe, 'clip_description', None)
                 }
                 
                 # Add to batch
@@ -203,7 +221,10 @@ class WeaviateVideoRetrieval:
                 'image_path': obj.properties['imagePath'],
                 'start_time': obj.properties['startTime'],
                 'end_time': obj.properties['endTime'],
-                'description': obj.properties['description']
+                'description': obj.properties['description'],
+                'source': obj.properties.get('source', 'unknown'),
+                'extract_text': obj.properties.get('extractText', None),
+                'clip_description': obj.properties.get('clipDescription', None)
             }
             
             # Get similarity score (convert distance to similarity)
@@ -224,23 +245,45 @@ class WeaviateVideoRetrieval:
             response = collection.aggregate.over_all(total_count=True)
             count = response.total_count if response.total_count else 0
             
-            # Get unique videos (simple approach - get all videoIds and count unique)
-            # Note: v4 doesn't have direct group_by in aggregates like v3
+            # Get unique videos and additional statistics
             try:
-                # Query all objects to count unique videos (for small datasets)
-                # For large datasets, this might need optimization
+                # Query all objects to count unique videos and analyze content
                 all_objects = collection.query.fetch_objects(limit=10000)  # Adjust limit as needed
                 unique_video_ids = set()
+                source_counts = {}
+                ocr_count = 0
+                clip_desc_count = 0
+                
                 for obj in all_objects.objects:
                     if 'videoId' in obj.properties:
                         unique_video_ids.add(obj.properties['videoId'])
+                    
+                    # Count sources
+                    source = obj.properties.get('source', 'unknown')
+                    source_counts[source] = source_counts.get(source, 0) + 1
+                    
+                    # Count OCR coverage
+                    if obj.properties.get('extractText'):
+                        ocr_count += 1
+                    
+                    # Count CLIP description coverage
+                    if obj.properties.get('clipDescription'):
+                        clip_desc_count += 1
+                
                 unique_videos = len(unique_video_ids)
-            except Exception:
+            except Exception as e:
+                logger.warning(f"Could not get detailed statistics: {e}")
                 unique_videos = 0
+                source_counts = {}
+                ocr_count = 0
+                clip_desc_count = 0
             
             return {
                 "total_keyframes": count,
                 "unique_videos": unique_videos,
+                "ocr_coverage": ocr_count,
+                "clip_description_coverage": clip_desc_count,
+                "source_distribution": source_counts,
                 "database": "Weaviate",
                 "url": self.weaviate_url
             }
@@ -286,7 +329,10 @@ class WeaviateVideoRetrieval:
                     "image_path": obj.properties.get("imagePath"),
                     "start_time": obj.properties.get("startTime"),
                     "end_time": obj.properties.get("endTime"),
-                    "description": obj.properties.get("description", "")
+                    "description": obj.properties.get("description", ""),
+                    "source": obj.properties.get("source", "unknown"),
+                    "extract_text": obj.properties.get("extractText", None),
+                    "clip_description": obj.properties.get("clipDescription", None)
                 })
 
             return {

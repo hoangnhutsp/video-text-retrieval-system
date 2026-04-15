@@ -112,6 +112,9 @@ def search_videos():
                     'start_time': item['start_time'],
                     'end_time': item['end_time'],
                     'description': item['description'],
+                    'source': item.get('source', 'unknown'),
+                    'extract_text': item.get('extract_text', None),
+                    'clip_description': item.get('clip_description', None),
                     'similarity_score': float(score)
                 }
             else:  # FAISS format (KeyFrameInfo object)
@@ -122,6 +125,9 @@ def search_videos():
                     'start_time': item.start_time,
                     'end_time': item.end_time,
                     'description': item.description,
+                    'source': getattr(item, 'source', 'unknown'),
+                    'extract_text': getattr(item, 'extract_text', None),
+                    'clip_description': getattr(item, 'clip_description', None),
                     'similarity_score': float(score)
                 }
             formatted_results.append(result)
@@ -174,9 +180,26 @@ def get_statistics():
             keyframe_count = len(getattr(retrieval_system, 'keyframes', []))
             unique_videos = len(set(kf.video_id for kf in retrieval_system.keyframes)) if hasattr(retrieval_system, 'keyframes') else 0
             
+            # Additional statistics for enhanced features
+            ocr_count = 0
+            clip_desc_count = 0
+            source_counts = {}
+            
+            if hasattr(retrieval_system, 'keyframes') and retrieval_system.keyframes:
+                for kf in retrieval_system.keyframes:
+                    if hasattr(kf, 'extract_text') and kf.extract_text:
+                        ocr_count += 1
+                    if hasattr(kf, 'clip_description') and kf.clip_description:
+                        clip_desc_count += 1
+                    source = getattr(kf, 'source', 'unknown')
+                    source_counts[source] = source_counts.get(source, 0) + 1
+            
             stats = {
                 'total_keyframes': keyframe_count,
                 'unique_videos': unique_videos,
+                'ocr_coverage': ocr_count,
+                'clip_description_coverage': clip_desc_count,
+                'source_distribution': source_counts,
                 'database': 'FAISS',
                 'index_path': INDEX_PATH
             }
